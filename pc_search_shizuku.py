@@ -16,17 +16,14 @@ activity = "com.google.android.apps.chrome.IntentDispatcher"
 url = "https://bing.com/search?q=test"
 
 launch_app = [
-    "sh","rish","-c",
-    "am", "start",
-    "-n", f"{package}/{activity}",
-    "-d", url
+    "sh","rish","-c",f"am start -n {package}/{activity} -d {url}"
 ]
 
 def start_search():
     for i in words:
         
-        subprocess.call(list(map(str,"input text".split()))+[f'{i}'])
-        subprocess.call(list(map(str,"sh rish -c input keyevent KEYCODE_ENTER".split())))
+        subprocess.call(list(map(str,"sh rish -c".split()))+[f'input text {i}'])
+        subprocess.call(list(map(str,"sh rish -c".split()))+['input keyevent KEYCODE_ENTER'])
 
         time.sleep(7)
         
