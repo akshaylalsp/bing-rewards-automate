@@ -14,27 +14,24 @@ words = [
 ]
 
 launch_app = [
-    "sh","rish","-c",
-    "am", "start",
-    "-n", f"{package}/{activity}",
-    "-d", url
+    "sh","rish","-c",f"am start -n {package}/{activity} -d {url}"
 ]
 
 
 def clear_text():
     for _ in range(10):
-        subprocess.call(list(map(str,"sh rish -c input keyevent 67".split())))
+        subprocess.call(list(map(str,"sh rish -c".split()))+['input keyevent 67'])
 
 
 def start_search():
     for i in words:
-        subprocess.call(list(map(str,"sh rish -c input keyevent KEYCODE_ENTER".split())))
-        subprocess.call(list(map(str,"sh rish -c input text a".split())))
-        subprocess.call(list(map(str,"sh rish -c input keyevent KEYCODE_TAB".split())))
-        subprocess.call(list(map(str,"sh rish -c input keyevent KEYCODE_ENTER".split())))
+        subprocess.call(list(map(str,"sh rish -c".split()))+['input keyevent KEYCODE_ENTER'])
+        subprocess.call(list(map(str,"sh rish -c".split()))+['input text a'])
+        subprocess.call(list(map(str,"sh rish -c".split()))+['input keyevent KEYCODE_TAB'])
+        subprocess.call(list(map(str,"sh rish -c".split()))+['input keyevent KEYCODE_ENTER'])
         clear_text()
-        subprocess.call(list(map(str,"sh rish -c input text".split()))+[f'{i}'])
-        subprocess.call(list(map(str,"sh rish -c input keyevent KEYCODE_ENTER".split())))
+        subprocess.call(list(map(str,"sh rish -c".split()))+[f'input text {i}'])
+        subprocess.call(list(map(str,"sh rish -c".split()))+['input keyevent KEYCODE_ENTER'])
         time.sleep(7)
         
 
